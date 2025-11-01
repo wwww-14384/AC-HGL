@@ -5,4 +5,4 @@ Here is the official code and supplementary materials for the GC-AGL model:AC-HG
 <img width="1336" height="748" alt="image" src="https://github.com/user-attachments/assets/c5e594fd-9249-49b0-bc81-86ae15295b20" />
 
 Our initial experiments were conducted within a complex business codebase developed based on Qlib.
-The original code is comprehensive, and we will release the dataset and core code in the future
+The original code is comprehensive, and we will release the dataset and core code in the future.
