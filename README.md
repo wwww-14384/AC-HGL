@@ -7,14 +7,16 @@ Here is the official code and supplementary materials for the GC-AGL model:AC-HG
 Our initial experiments were conducted within a complex business codebase developed based on Qlib.
 The original code is comprehensive, and we will release the dataset and core code in the future.
 
-<img width="714" height="427" alt="image" src="https://github.com/user-attachments/assets/55cd5616-f779-4d22-bebd-2a898eccef1a" /> <img width="563" height="418" alt="image" src="https://github.com/user-attachments/assets/2d492ee8-f304-4a8f-ad45-731bb73c87d8" /> <img width="481" height="358" alt="image" src="https://github.com/user-attachments/assets/23b8778d-ef5b-4929-8d5b-2bc535a855b6" />
+<img width="185" height="145" alt="image" src="https://github.com/user-attachments/assets/49b3e8ed-1ee8-4b42-8ae9-ab62f4c56f2c" /> <img width="127" height="141" alt="image" src="https://github.com/user-attachments/assets/e1c45153-6089-4233-b8e7-78de0becb205" /> <img width="117" height="143" alt="image" src="https://github.com/user-attachments/assets/5a02d834-87f1-4065-9e54-fec82b421fe9" />
 
 
 The box plot and Gaussian distribution of Cross-Moran’s I p-values compare significance under crisis (2008) and normal market conditions (2019). Overall, p-values cluster predominantly below 0.05, confirming stable statistical significance and robustness to market regimes.
 During crisis periods, p-values exhibit a tightly concentrated and low-value distribution, reflecting strong directional impacts that make the null hypothesis easier to reject.
 In contrast, normal markets show a wider and higher-median distribution, as more heterogeneous drivers (macroeconomics, industry dynamics, firm-level behavior, policy expectations) create greater variability in spatial dependence.
 
-<img width="1167" height="855" alt="image" src="https://github.com/user-attachments/assets/7016c2b7-22d1-42e3-811c-a85be8f06736" /> <img width="1168" height="855" alt="image" src="https://github.com/user-attachments/assets/cad98039-eb68-4450-b337-966fc2b5142d" />
+<img width="201" height="156" alt="image" src="https://github.com/user-attachments/assets/6dc496f6-dc48-43e3-9416-69b27e111067" /> <img width="195" height="159" alt="image" src="https://github.com/user-attachments/assets/e067b570-6bf8-4d5b-845f-05d41951c70b" />
+
+
 
 
 Comparing SHAP values across regimes reveals a reversal in feature effects. For example, TS_F20 (momentum divergence) negatively drives the prediction of “panic sell-off’’ during crises but positively contributes to “trend continuation’’ in normal markets. Similarly, TS_F22 (medium-term mean reversion) becomes sharply elevated during fast downward crashes (e.g., multiple circuit breakers in 2008), signaling oversold conditions that typically support “rebound’’ predictions in stable markets.
