@@ -14,28 +14,6 @@ import numpy as np
 from scipy.stats import iqr
 
 
-# def visualize_explanation(edge_mask: np.ndarray, threshold=None, node_labels=None):
-#     """可视化边重要性矩阵
-#
-#     Args:
-#         edge_mask (np.ndarray):
-#         threshold (float):
-#         node_labels (list):
-#     """
-#     if threshold is None:
-#         threshold = np.percentile(edge_mask, 90)
-#
-#     plt.figure(figsize=(12, 10))
-#     plt.imshow(edge_mask > threshold, cmap='viridis')
-#
-#     if node_labels:
-#         plt.xticks(range(len(node_labels)), node_labels, rotation=90)
-#         plt.yticks(range(len(node_labels)), node_labels)
-#
-#     plt.title("Top 10% Important Connections")
-#     plt.colorbar()
-#     plt.savefig('stock_relations.png', bbox_inches='tight')
-#     plt.close()
 
 
 def robust_zscore_norm_multidimensional(data, axis=2, clip_outlier=True, threshold=3.0):
@@ -119,11 +97,11 @@ def calculate_moran(data):
 
 
     weights_matrix = np.full((n, n), 1)
-    np.fill_diagonal(weights_matrix, 0)  # 将对角线设为0
+    np.fill_diagonal(weights_matrix, 0)  
 
 
     w = libpysal.weights.full2W(weights_matrix)
-    w.transform = 'R'  # 行标准化
+    w.transform = 'R'  
 
     # features = scale(features)
 
@@ -419,16 +397,9 @@ class SequenceModel():
                 pred = self.model(feature.float(),label.float(),require_exp=True)
 
                 # edge_mask = self.model.edge_importance.cpu().numpy()
-                # top_threshold = np.percentile(edge_mask, 90)  # 取前10%的边
+                # top_threshold = np.percentile(edge_mask, 90)  
 
-                # 3. 绘制关联网络
-                # plt.figure(figsize=(12, 10))
-                # visualize_explanation(
-                #     edge_mask,
-                #     threshold=top_threshold,
-                #     # node_labels=stock_names  # 可传入股票名称列表作为标签
-                # )
-                # plt.savefig('stock_relations22.png')
+
 
                 pred = pred.detach().cpu().numpy()
             # all_preds.extend(pred.ravel().tolist())
@@ -481,4 +452,5 @@ import pickle
 # print(daily_count[290])
 # print(daily_index[1])
 # data=pd.Series(index=data.get_index(), dtype=pd.StringDtype()).groupby("datetime")
+
 # print(data.size())
