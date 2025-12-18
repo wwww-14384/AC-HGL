@@ -370,7 +370,7 @@ class SequenceModel():
 
             if train_loss <= self.train_stop_loss_thred:
                 break
-        torch.save(best_param, f'{self.save_path}{self.save_prefix}AC-HGL_{self.seed}.pkl')
+        torch.save(best_param, f'{self.save_path}{self.save_prefix}ACHGL_{self.seed}.pkl')
 
 
 
@@ -427,6 +427,7 @@ class SequenceModel():
         }
 
         return predictions, metrics
+
 
 
 
