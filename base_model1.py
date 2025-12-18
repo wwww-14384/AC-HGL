@@ -370,7 +370,7 @@ class SequenceModel():
 
             if train_loss <= self.train_stop_loss_thred:
                 break
-        torch.save(best_param, f'{self.save_path}{self.save_prefix}master_{self.seed}.pkl')
+        torch.save(best_param, f'{self.save_path}{self.save_prefix}achgl_{self.seed}.pkl')
 
 
 
@@ -427,30 +427,5 @@ class SequenceModel():
         }
 
         return predictions, metrics
-import pickle
-# import pandas as pd
-# f = open('/home/MASTER/data/csi300/csi300_dl_train.pkl','rb')
-# data = pickle.load(f)
-# print(data)
-# import qlib.data.dataset.TSDataSampler
 
 
-# # pd.set_option('display.width',None)
-# # pd.set_option('display.max_rows',None)
-# # pd.set_option('display.max_colwidth',None)
-# print(data)
-# inf=str(data)
-# ft = open('/home/MASTER/data/csi300/csi300_dl_train.csv', 'w')
-# ft.write(inf)
-
-# f = open('/home/MASTER/data/csi300/csi300_dl_train.pkl','rb')
-# data = pickle.load(f)
-# print(data)
-# daily_count = pd.Series(index=data.get_index(), dtype=pd.StringDtype()).groupby("datetime").size().values
-# daily_index = np.roll(np.cumsum(daily_count), 1)  # calculate begin index of each batch
-# daily_index[0] = 0
-# print(daily_count[290])
-# print(daily_index[1])
-# data=pd.Series(index=data.get_index(), dtype=pd.StringDtype()).groupby("datetime")
-
-# print(data.size())
