@@ -1,4 +1,4 @@
-from achgl import AC-HGLModel
+from achgl import ACHGLModel
 import pickle
 import torch, gc
 
@@ -40,7 +40,7 @@ GPU = 0
 seed = 0
 train_stop_loss_thred = 0.90
 
-model = AC-HGLModel(
+model = ACHGLModel(
     d_feat = d_feat, d_model = d_model, t_nhead = t_nhead, s_nhead = s_nhead, T_dropout_rate=dropout, S_dropout_rate=dropout,
     beta=beta, gate_input_end_index=gate_input_end_index, gate_input_start_index=gate_input_start_index,
     n_epochs=n_epoch, lr = lr, GPU = GPU, seed = seed, train_stop_loss_thred = train_stop_loss_thred,
@@ -56,11 +56,12 @@ print("Model Trained.")
 
 
 # Test
-param_path = f'model/{universe}AC-HGL_0.pkl.'
+param_path = f'model/{universe}ACHGL_0.pkl.'
 print(f'Model Loaded from {param_path}')
-model.load_param('/home/user/deng_wenyang/AC-HGL/model/csi300AC-HGL_0.pkl')
+model.load_param('/home/user/deng_wenyang/ACHGL/model/csi300ACHGL_0.pkl')
 predictions, metrics = model.predict(dl_test)
 print(metrics)
+
 
 
 
