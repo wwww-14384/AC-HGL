@@ -1,7 +1,7 @@
 # AC-HGL
 AC-HGL:Heterogeneous Graph Representation Learning through Adaptive Correlation for Stock Movement Prediction
 Here is the official code and supplementary materials for the GC-AGL model:AC-HGL is a model designed for stock price prediction. Then AC method constructs multiple correlation graphs and aggregates them to acquire the adaptive correlation representations. And HGL method aggregates different representations of heterogeneous graphs via varying feature strengths, and optimizes the dynamic weights based on the contributions of different modules.
-## Usage1 (The raw dataset version without Qlib preprocessing)
+## Usage1 (The raw version without Qlib)
 1. Install dependencies.
 - pandas == 1.5.3
 - torch == 1.11.0
@@ -47,6 +47,6 @@ qrun workflow_config_achgl_Alpha158.yaml
 ```-->
 ### Note
 - The complete scripts(Usage2) will be released upon the official acceptance of the paper.
-- The initial version(Usage1) has verified the potential of the model, and additional test scripts (e.g., for noise robustness testing) will be supplemented in the future. 
+- The initial version(Usage1) has verified the potential of the model, and additional test scripts (e.g., for noise robustness testing) will be supplemented too. 
 
 
