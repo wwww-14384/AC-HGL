@@ -44,5 +44,6 @@ qrun workflow_config_achgl_Alpha158.yaml
 ```-->
 ### Note
 ```
-The complete scripts will be released upon the official acceptance of the paper. The initial version has verified the potential of the model, and additional test scripts (e.g., for noise robustness testing) will be supplemented in the future.
+-The complete scripts will be released upon the official acceptance of the paper.
+The initial version has verified the potential of the model, and additional test scripts (e.g., for noise robustness testing) will be supplemented in the future.-
 
