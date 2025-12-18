@@ -1,24 +1,52 @@
 # AC-HGL
 AC-HGL:Heterogeneous Graph Representation Learning through Adaptive Correlation for Stock Movement Prediction
 Here is the official code and supplementary materials for the GC-AGL model:AC-HGL is a model designed for stock price prediction. Then AC method constructs multiple correlation graphs and aggregates them to acquire the adaptive correlation representations. And HGL method aggregates different representations of heterogeneous graphs via varying feature strengths, and optimizes the dynamic weights based on the contributions of different modules.
+## Usage1 (The raw dataset version without Qlib preprocessing)
+1. Install dependencies.
+- pandas == 1.5.3
+- torch == 1.11.0
 
-<img width="1336" height="748" alt="image" src="https://github.com/user-attachments/assets/c5e594fd-9249-49b0-bc81-86ae15295b20" />
+2. Install [Qlib](github.com/microsoft/qlib). We have minimized the reliance on Qlib, and you can simply install it by
+- <code>pip install pyqlib </code>
+- pylib == 0.9.1.99
 
-Our initial experiments were conducted within a complex business codebase developed based on Qlib.
-The original code is comprehensive, and we will release the dataset and core code in the future.
+3. Download data from [OneDrive link](https://1drv.ms/f/c/a596b5061052f949/IgDOo3vuQjwBTL8P3pd719xwAc8Ju0RA9gBnJuQV_dI27Hs?e=cBJE8J)
+   
+4. Run main.py.
 
-<img width="185" height="145" alt="image" src="https://github.com/user-attachments/assets/49b3e8ed-1ee8-4b42-8ae9-ab62f4c56f2c" /> <img width="127" height="141" alt="image" src="https://github.com/user-attachments/assets/e1c45153-6089-4233-b8e7-78de0becb205" /> <img width="117" height="143" alt="image" src="https://github.com/user-attachments/assets/5a02d834-87f1-4065-9e54-fec82b421fe9" />
+## Dataset1
+### Form
+The downloaded data is split into training, validation, and test sets, with two stock universes. Note the csi300 data is a subset of the csi800 data.
+You can use the following code to investigate the **datetime, instrument, and feature formulation**.
+```python
+with open(f'data/csi300/csi300_dl_train.pkl', 'rb') as f:
+    dl_train = pickle.load(f)
+    dl_train.data # a Pandas dataframe
+```
+In our code, the data will be gathered chronically and then grouped by prediction dates. the <code> data </code> iterated by the data loader is of shape (N, T, F), where:
+- N - number of stocks. For CSI300, N is around 300 on each prediction date; For CSI800, N is around 800 on each prediction date.
+- T - length of lookback_window, T=8.
+- F - 222 in total, including 158 factors, 63 market information, and 1 label.   
+
+## Usage2 (the complete version of the script)
+
+### config
+
+> Note that you should install `torch` and by your self.
+```
+bash config.sh
+```
+### run
+```
+conda activate ACHGL
+bash run.sh
+```
+<!-- or you can just directly use `qrun` tp run the codes (note that you should modify your `qlib`, since we add or modify some files in `qlib/contrib/data/dataset.py`, `qlib/data/dataset/__init__.py`, `qlib/data/dataset/processor.py` and `qlib/contrib/model/pytorch_achgl.py`):
+```
+qrun workflow_config_achgl_Alpha158.yaml
+```-->
+### Note
+- The complete scripts(Usage2) will be released upon the official acceptance of the paper.
+- The initial version(Usage1) has verified the potential of the model, and additional test scripts (e.g., for noise robustness testing) will be supplemented in the future. 
 
 
-The box plot and Gaussian distribution of Cross-Moran’s I p-values compare significance under crisis (2008) and normal market conditions (2019). Overall, p-values cluster predominantly below 0.05, confirming stable statistical significance and robustness to market regimes.
-During crisis periods, p-values exhibit a tightly concentrated and low-value distribution, reflecting strong directional impacts that make the null hypothesis easier to reject.
-In contrast, normal markets show a wider and higher-median distribution, as more heterogeneous drivers (macroeconomics, industry dynamics, firm-level behavior, policy expectations) create greater variability in spatial dependence.
-
-<img width="201" height="156" alt="image" src="https://github.com/user-attachments/assets/6dc496f6-dc48-43e3-9416-69b27e111067" /> <img width="195" height="159" alt="image" src="https://github.com/user-attachments/assets/e067b570-6bf8-4d5b-845f-05d41951c70b" />
-
-
-
-
-Comparing SHAP values across regimes reveals a reversal in feature effects. For example, TS_F20 (momentum divergence) negatively drives the prediction of “panic sell-off’’ during crises but positively contributes to “trend continuation’’ in normal markets. Similarly, TS_F22 (medium-term mean reversion) becomes sharply elevated during fast downward crashes (e.g., multiple circuit breakers in 2008), signaling oversold conditions that typically support “rebound’’ predictions in stable markets.
-Feature impact magnitude also varies by regime: crisis periods exhibit larger effects (e.g., TS_F62 volatility SHAP > 0.3), while normal markets show more moderate contributions (e.g., TS_F54 price-volume interaction mostly within ±0.2).
-These results indicate that feature strength is market-dependent, and the relational graph must adapt accordingly rather than rely on static feature assumptions. Thus, the model offers actionable interpretability by revealing regime-specific factor effects relevant to trading decisions.
