@@ -1,4 +1,4 @@
-## Usage
+## Usage1 (The raw dataset version without Qlib preprocessing)
 1. Install dependencies.
 - pandas == 1.5.3
 - torch == 1.11.0
@@ -7,13 +7,11 @@
 - <code>pip install pyqlib </code>
 - pylib == 0.9.1.99
 
-3. Download data from [OneDrive link](https://1drv.ms/f/c/652674690cc447e6/Eu8Kxv4xxTFMtDQqTW0IU0UB8rnpjACA5twMi8BA_PfbSA?e=ooc0za) (or an alternative choice [MEGA link](https://mega.nz/file/4OE0jK4I#h-LG7OjFnncbL_YGoSx5c0W604OdFMgALTYFcoDvgfw)) and unpack it into <code> data/ </code>.
+3. Download data from [OneDrive link](https://1drv.ms/f/c/a596b5061052f949/IgDOo3vuQjwBTL8P3pd719xwAc8Ju0RA9gBnJuQV_dI27Hs?e=cBJE8J)
+   
+4. Run main.py.
 
-5. Run main.py.
-
-6. We provide two trained models: <code> model/csi300master_0.pkl, model/csi800master_0.pkl</code>
-
-## Dataset
+## Dataset1
 ### Form
 The downloaded data is split into training, validation, and test sets, with two stock universes. Note the csi300 data is a subset of the csi800 data.
 You can use the following code to investigate the **datetime, instrument, and feature formulation**.
@@ -26,3 +24,25 @@ In our code, the data will be gathered chronically and then grouped by predictio
 - N - number of stocks. For CSI300, N is around 300 on each prediction date; For CSI800, N is around 800 on each prediction date.
 - T - length of lookback_window, T=8.
 - F - 222 in total, including 158 factors, 63 market information, and 1 label.   
+
+## Usage2 (the complete version of the script)
+
+### config
+
+> Note that you should install `torch` and by your self.
+```
+bash config.sh
+```
+### run
+```
+conda activate ACHGL
+bash run.sh
+```
+<!-- or you can just directly use `qrun` tp run the codes (note that you should modify your `qlib`, since we add or modify some files in `qlib/contrib/data/dataset.py`, `qlib/data/dataset/__init__.py`, `qlib/data/dataset/processor.py` and `qlib/contrib/model/pytorch_achgl.py`):
+```
+qrun workflow_config_achgl_Alpha158.yaml
+```
+
+### Note
+The complete scripts will be released upon the official acceptance of the paper. The initial version has verified the potential of the model, and additional test scripts (e.g., for noise robustness testing) will be supplemented in the future.
+-->
