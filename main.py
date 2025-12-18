@@ -1,4 +1,4 @@
-from ACHGL import AC-HGLModel
+from achgl import AC-HGLModel
 import pickle
 import torch, gc
 
@@ -61,6 +61,7 @@ print(f'Model Loaded from {param_path}')
 model.load_param('/home/user/deng_wenyang/AC-HGL/model/csi300AC-HGL_0.pkl')
 predictions, metrics = model.predict(dl_test)
 print(metrics)
+
 
 
 
